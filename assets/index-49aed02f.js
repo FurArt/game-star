@@ -69,4 +69,4 @@ Error generating stack: `+o.message+`
           bg-cover bg-center bg-no-repeat\r
           md:bg-cover \r
           xl:bg-fixed \r
-        `,style:{backgroundImage:"url(/images/Bg.svg)"},children:X(dT,{})})})};function pT(){return X(T0,{children:X(S0,{children:X(Ap,{index:!0,element:X(hT,{})})})})}Fs.createRoot(document.getElementById("root")).render(X(gd.StrictMode,{children:X(D0,{children:X(C0,{children:X(pT,{})})})}));
+        `,style:{backgroundImage:"url(/images/Bg.svg)"},children:X(dT,{})})})};function pT(){return X(T0,{basename:"/game-star",children:X(S0,{children:X(Ap,{index:!0,element:X(hT,{})})})})}Fs.createRoot(document.getElementById("root")).render(X(gd.StrictMode,{children:X(D0,{children:X(C0,{children:X(pT,{})})})}));
