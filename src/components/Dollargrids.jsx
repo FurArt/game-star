@@ -56,30 +56,7 @@ const DollarGrid = () => {
       return;
     }
 
-    // if (item.value > 0) {
-    //   dispatchGame({
-    //     type: "SET_WALLET",
-    //     payload: state.wallet + item.value * state.multiplication,
-    //   });
-    //   return;
-    // }
-
     if (item.value > 0) {
-
-      const cell = document.getElementById(`cell-${index}`);
-      const wallet = walletRef.current;
-      if (cell && wallet) {
-        const cellRect = cell.getBoundingClientRect();
-        const walletRect = wallet.getBoundingClientRect();
-        console.log(cell);
-
-        setFlyItem({
-          img: "/images/cash.png",
-          from: { x: cellRect.left, y: cellRect.top },
-          to: { x: walletRect.left, y: walletRect.top },
-        });
-      }
-
       dispatchGame({
         type: "SET_WALLET",
         payload: state.wallet + item.value * state.multiplication,
@@ -95,47 +72,6 @@ const DollarGrid = () => {
 
   return (
     <>
-      {/* <div className="flex flex-col items-center justify-center min-h-screen">
-        <WalletDisplay />
-        <div className="grid grid-cols-3 gap-3 p-4">
-          {numbers.map((num, index) => (
-            <div
-              key={index}
-              onClick={() => handleClick(index, itemsGrid[num])}
-              className="w-[113px] h-[113px] rounded-xl cursor-pointer bg-center bg-no-repeat"
-              style={{
-                backgroundImage: revealed[index]
-                  ? `url(${itemsGrid[num].path})`
-                  : "url(/images/Items-back.png)",
-              }}
-            />
-          ))}
-        </div>
-      </div> */}
-      {/* <div className="flex flex-col items-center justify-center min-h-screen">
-        <WalletDisplay />
-        <div className="grid grid-cols-3 gap-3 p-4">
-          {numbers.map((num, index) => {
-            const isRevealed = revealed[index];
-            const imgPath = isRevealed
-              ? itemsGrid[num].path
-              : "/images/Items-back.png";
-
-            return (
-              <motion.div
-                key={index}
-                onClick={() => handleClick(index, itemsGrid[num])}
-                className="w-[113px] h-[113px] rounded-xl cursor-pointer bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${imgPath})` }}
-                initial={false}
-                animate={{ rotateY: isRevealed ? 360 : 0 }}
-                transition={{ duration: 0.4 }}
-              />
-            );
-          })}
-        </div>
-      </div> */}
-
       <div className="flex flex-col items-center justify-center min-h-screen">
         <WalletDisplay />
         <div className="grid grid-cols-3 gap-3 p-4">
