@@ -1,35 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useUser } from "../hooks/Hooks";
+import { useGame } from "../hooks/Hooks";
+import DollarGrid from "../components/Dollargrids";
+import WalletDisplay from "../components/WalletDisplay";
 
 export const Home = () => {
-  const { user } = useUser();
+  const { wallet, stopGame, multiplication, dispatchGame } = useGame();
+  useEffect(() => {
+    console.log(wallet);
 
+  }, [wallet])
   return (
-    <div className="flex justify-center mt-20">
-      <div className=" space-y-4">
-        <h1 className="text-2xl font-semibold">
-          Welcome home, {user ? user.username : "Buddy"}!
-        </h1>
-
-        {!user && (
-          <Link
-            className="block mt-5 w-full bg-blue-700 text-center text-white font-medium text-lg
-        py-2 px-5 rounded-3xl"
-            to="/login"
-          >
-            Log in
-          </Link>
-        )}
-        <Link
-          className="block mt-5 w-full bg-blue-700 text-center text-white font-medium text-lg
-        py-2 px-5 rounded-3xl"
-          to="/profile"
-        >
-          Dashboard
-        </Link>
+    <>
+      <div
+        className="
+          w-full min-h-screen 
+          bg-cover bg-center bg-no-repeat
+          md:bg-cover 
+          xl:bg-fixed 
+        "
+        style={{ backgroundImage: 'url(/images/Bg.svg)' }}
+      >
+        <DollarGrid />
       </div>
-    </div>
+    </>
   );
 };
 

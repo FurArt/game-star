@@ -1,33 +1,32 @@
 import React, { useContext } from "react";
-
-import { UserContext } from "../context/UserContext";
+import { GameContext } from "../context/GameProvider";
 import { AlertContext } from "../context/AlertContext";
 
-export const useUser = () => {
+// Hook for accessing game state & dispatcher
+export const useGame = () => {
   const {
-    state: { user },
-    dispatchUser,
-  } = useContext(UserContext);
+    state: { wallet, stopGame, multiplication },
+    dispatchGame,
+  } = useContext(GameContext);
 
-  return { user, dispatchUser };
+  return { wallet, stopGame, multiplication, dispatchGame };
 };
 
+// Hook for loading/error states (if you have them in GameContext)
 export const useAppState = () => {
   const {
     state: { isLoading, isError },
-  } = useContext(UserContext);
+  } = useContext(GameContext);
   return { isLoading, isError };
 };
 
+// Hook for alerts
 export const useAlert = () => {
   const { alertState, dispatchAlert } = useContext(AlertContext);
 
-  return {
-    alertState,
-    dispatchAlert,
-  };
+  return { alertState, dispatchAlert };
 };
 
 export default function Hook() {
-  return;
+  return null;
 }
