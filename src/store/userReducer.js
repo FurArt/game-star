@@ -19,7 +19,7 @@ const reducer = (state, action) => {
       return {
         ...state,
         isLoading: true,
-        isError: false, // Reset error flag when loading starts
+        isError: false,
       };
 
     case "SUCCESS":
