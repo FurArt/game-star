@@ -7,8 +7,6 @@ import WalletDisplay from "../components/WalletDisplay";
 export const Home = () => {
   const { wallet, stopGame, multiplication, dispatchGame } = useGame();
   useEffect(() => {
-    console.log(wallet);
-
   }, [wallet])
   return (
     <>
@@ -19,7 +17,7 @@ export const Home = () => {
           md:bg-cover 
           xl:bg-fixed 
         "
-        style={{ backgroundImage: 'url(/images/Bg.svg)' }}
+        style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/Bg.svg)` }}
       >
         <DollarGrid />
       </div>

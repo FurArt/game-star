@@ -3,6 +3,7 @@ import itemsGrid from "../api/api";
 import { GameContext } from "../context/GameProvider";
 import WalletDisplay from "../components/WalletDisplay";
 import { motion } from "framer-motion";
+import FlyingCash from "./FlyingCash";
 
 
 function generateShuffledArray() {
@@ -15,34 +16,32 @@ function generateShuffledArray() {
 }
 
 const DollarGrid = () => {
+  const base = import.meta.env.BASE_URL || '/';
+
   const [numbers, setNumbers] = useState([]);
   const [revealed, setRevealed] = useState(Array(9).fill(false));
   const { state, dispatchGame } = useContext(GameContext);
 
-  const [flyItem, setFlyItem] = useState(null);
+  const [showCash, setShowCash] = useState(false);
+  const [cashOriginRect, setCashOriginRect] = useState(null);
   const walletRef = useRef(null);
 
 
   useEffect(() => {
     setNumbers(generateShuffledArray());
   }, []);
-
   const handleClick = (index, item) => {
     if (revealed[index]) return;
 
     setRevealed((prev) => {
       const updated = [...prev];
       updated[index] = true;
-
-      if (item.stop && item.value === 0) {
-        return updated.map(() => true);
-      }
-
       return updated;
     });
 
     if (item.stop && item.value === 0) {
       dispatchGame({ type: "SET_STOP_GAME", payload: true });
+      setRevealed(new Array(9).fill(true));
       return;
     }
 
@@ -57,28 +56,35 @@ const DollarGrid = () => {
     }
 
     if (item.value > 0) {
+      const cellNode = document.querySelector(`.cell-${index}`);
+
+      if (cellNode) {
+        setCashOriginRect(cellNode.getBoundingClientRect());
+      }
+      
       dispatchGame({
         type: "SET_WALLET",
         payload: state.wallet + item.value * state.multiplication,
       });
+
+      setShowCash(true);
       return;
     }
-
     if (item.value === 0) {
       dispatchGame({ type: "SET_WALLET", payload: 0 });
       return;
     }
   };
-
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <WalletDisplay />
-        <div className="grid grid-cols-3 gap-3 p-4">
+
+      <div className="flex flex-col items-center justify-center min-h-screen relative">
+        <WalletDisplay ref={walletRef} />
+        <div className="grid grid-cols-3 gap-2 p-4">
           {numbers.map((num, index) => {
             const isRevealed = revealed[index];
             const frontImage = itemsGrid[num].path;
-            const backImage = "/images/Items-back.png";
+            const backImage = `${import.meta.env.BASE_URL}images/Items-back.png`;
 
             return (
               <motion.div
@@ -107,12 +113,27 @@ const DollarGrid = () => {
                       backfaceVisibility: "hidden",
                     }}
                   />
+                  
+
+
+
+
+
                 </motion.div>
               </motion.div>
             );
           })}
         </div>
+
+        {showCash && cashOriginRect && (
+          <FlyingCash
+            originRect={cashOriginRect}
+            targetRef={walletRef}
+            onComplete={() => setShowCash(false)}
+          />
+        )}
       </div>
+
     </>
   );
 };

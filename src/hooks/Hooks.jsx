@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { GameContext } from "../context/GameProvider";
 import { AlertContext } from "../context/AlertContext";
 
-// Hook for accessing game state & dispatcher
 export const useGame = () => {
   const {
     state: { wallet, stopGame, multiplication },
@@ -12,7 +11,6 @@ export const useGame = () => {
   return { wallet, stopGame, multiplication, dispatchGame };
 };
 
-// Hook for loading/error states (if you have them in GameContext)
 export const useAppState = () => {
   const {
     state: { isLoading, isError },
@@ -20,7 +18,6 @@ export const useAppState = () => {
   return { isLoading, isError };
 };
 
-// Hook for alerts
 export const useAlert = () => {
   const { alertState, dispatchAlert } = useContext(AlertContext);
 

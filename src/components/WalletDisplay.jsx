@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { useGame } from "../hooks/Hooks";
 
 const formatWallet = (value) => {
@@ -10,13 +10,14 @@ const formatWallet = (value) => {
   return num.toString();
 };
 
-export default function WalletDisplay() {
+const WalletDisplay = forwardRef(function WalletDisplay(props, ref) {
   const { wallet } = useGame();
 
   return (
-    <div className="flex items-center gap-2 text-xl font-bold text-white px-4 py-2 rounded">
-      <img src="/images/cash.png" alt="cash" className="w-6 h-6" />
+    <div ref={ref} className="flex items-center gap-2 text-xl font-bold text-white px-4 py-2 rounded">
+      <img src={`${import.meta.env.BASE_URL}images/cash.png`} alt="cash" className="w-6 h-6" />
       {formatWallet(wallet)}
     </div>
   );
-}
+});
+export default WalletDisplay;

@@ -18,12 +18,7 @@ const reducer = (state, action) => {
         message: "",
         variant: "",
       };
-    // case "WARNING":
-    //   return {
-    //     ...state,
-    //     warning: action.payload,
-    //   };
-    default:
+        default:
       return state;
   }
 };

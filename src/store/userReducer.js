@@ -46,7 +46,6 @@ const reducer = (state, action) => {
       };
 
     default:
-      // If the action type is not recognized, return the unchanged state
       return state;
   }
 };
