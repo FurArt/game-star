@@ -1,14 +1,15 @@
 import { createContext, useReducer } from "react";
-import reducer, { initialState } from "../store/alertReducer";
+import { alertReducer, initialStateAlert } from "../store/alertReducer";
 
 export const AlertContext = createContext(null);
 
 const { Provider } = AlertContext;
 
 const AlertProvider = ({ children }) => {
-  const [alertState, dispatchAlert] = useReducer(reducer, initialState);
+  const [alertState, dispatchAlert] = useReducer(alertReducer, initialStateAlert);
 
-  return <Provider value={{alertState, dispatchAlert}}>{children}</Provider>;
+  return <Provider value={{ alertState, dispatchAlert }}>{children}</Provider>;
 };
 
 export default AlertProvider;
+

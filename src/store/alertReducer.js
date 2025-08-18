@@ -1,26 +1,23 @@
-export const initialState = {
-  show: false,
+export const initialStateAlert = {
+  open: false,
   message: "",
-  variant: "",
+  variant: "info",
 };
 
-const reducer = (state, action) => {
+export function alertReducer(state, action) {
   switch (action.type) {
-    case "SHOW":
-      return {
-        show: true,
-        message: action.payload,
-        variant: action.variant,
-      };
-    case "HIDE":
-      return {
-        show: false,
-        message: "",
-        variant: "",
-      };
-        default:
+    case "SHOW": {
+      const message = action.payload ?? "";
+      const variant = action.variant ?? "info";
+      return { ...state, open: true, message, variant };
+    }
+    case "HIDE": {
+      return { ...state, open: false };
+    }
+    case "CLEAR": {
+      return { ...initialStateAlert };
+    }
+    default:
       return state;
   }
-};
-
-export default reducer
+}
