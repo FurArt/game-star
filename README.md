@@ -1,50 +1,13 @@
-# React JS + Tailwind CSS Starter Template
+🎮 Mini Game
 
-A starter template for creating React Apps, styled with Tailwind CSS.
+A small interactive mini-game built with React, TailwindCSS, Framer Motion, and a reusable Base Modal Window component.
 
-## Getting started
+🚀 Tech Stack
 
+⚛️ React – UI library for building interactive components
 
-First, fork this repo.
+🎨 TailwindCSS – utility-first CSS framework for styling
 
-Now head over to creating a <a href="github.com/new">new</a> repo. From the repository template section, click the dropdown and select:
+🎞 Framer Motion – smooth animations & transitions
 
-```
-yourusername/react-js-tailwind
-```
-
-Make your changes to suit your project's needs. 
-
-Clone locally with:
-
-```
-git clone https://github.com/yourusername/projectname
-```
-
-In your terminal, run:
-
-```
-npm install
-```
-
-to install all dependencies.
-
-When it's done, run:
-
-```
-npm run dev
-```
-
-Hit
-
-```
-O
-````
-
-and vite will open it in your browser.
-
-Or open your browser and navigate to <a href="localhost:5173">localchost:5173</a>.
-
-Make your changes, save and "VOILA!
-
-Happy hacking!
+🪟 Base Modal – reusable modal component for alerts / dialogs
