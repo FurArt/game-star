@@ -29,6 +29,7 @@ const DollarGrid = () => {
   useEffect(() => {
     if (state.stopGame) {
       setRevealed(Array(9).fill(false));
+      setNumbers(generateShuffledArray())
     }
   }, [state.stopGame]);
 
